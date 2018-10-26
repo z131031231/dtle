@@ -59,11 +59,12 @@
 
 [[projects]]
   branch = "dtle-mod"
-  digest = "1:430d4fe39440e8c190de70f2fcd7753b986aafeeb011677a068e4c2b49c8fc10"
+  digest = "1:6373b04f596a75ef073d59ed9a8131f84ccc7ccdd2189d1abe3a65ec17550a75"
   name = "github.com/araddon/qlbridge"
   packages = [
     "datasource",
     "expr",
+    "expr/builtins",
     "lex",
     "plan",
     "rel",
@@ -254,6 +255,14 @@
   version = "v1.1.1"
 
 [[projects]]
+  digest = "1:2915e1464ca9a9480ed2fb94d6939cdf418525b03b24bfb256486990abd8155a"
+  name = "github.com/dchest/siphash"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ca249f45189071f5d44dc6401334e3572037b9cb"
+  version = "v1.2.0"
+
+[[projects]]
   digest = "1:ba684ce6ef82f378ea66180ee6f84124b59f0a56f224798052a36874f84ba158"
   name = "github.com/docker/leadership"
   packages = ["."]
@@ -373,6 +382,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "2e65f85255dbc3072edf28d6b5b8efc472979f5a"
+
+[[projects]]
+  digest = "1:3a26588bc48b96825977c1b3df964f8fd842cd6860cc26370588d3563433cf11"
+  name = "github.com/google/uuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "d460ce9f8df2e77fb1ba55ca87fafed96c607494"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:a2615516243f31f32b51135f6797e3094a815eac05a817c36b42e42fd97f327d"
@@ -586,6 +603,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:c3123c6d9330f405bd5563f3f50b4f01ab0412d4ac54d56cc72fca93a6d6a86b"
+  name = "github.com/leekchan/timeutil"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "28917288c48df3d2c1cfe468c273e0b2adda0aa5"
+
+[[projects]]
+  branch = "master"
   digest = "1:6c7a02fe5b64fb3d7bbbf11f01c0632c08b7735d8d1537b928d0f03c874ded89"
   name = "github.com/lytics/datemath"
   packages = ["."]
@@ -697,6 +722,14 @@
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:9af6e6f3d2b57cf28ff14c411d712e5dfb6ed42f566c7523dbdc066f48a5b0af"
+  name = "github.com/mssola/user_agent"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "85b2f5798558a46fc23443c596e781712f4b7792"
+  version = "v0.4.1"
+
+[[projects]]
   digest = "1:a840bc0035e011ad1062d5f6de8671ac9fe553f12f3ae2040a60e44942432ead"
   name = "github.com/nats-io/gnatsd"
   packages = [
@@ -771,6 +804,14 @@
   packages = ["tests"]
   pruneopts = "UT"
   revision = "2418949ac30d9933e7412ccce41f1aa2ae8d5ae8"
+
+[[projects]]
+  digest = "1:e5d0bd87abc2781d14e274807a470acd180f0499f8bf5bb18606e9ec22ad9de9"
+  name = "github.com/pborman/uuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "adf5a7427709b9deb95d29d3fa8a2bf9cfd388f1"
+  version = "v1.2"
 
 [[projects]]
   digest = "1:29803f52611cbcc1dfe55b456e9fdac362af7248b3d29d7ea1bec0a12e71dff4"
@@ -1232,6 +1273,7 @@
     "github.com/Shopify/sarama",
     "github.com/araddon/qlbridge/datasource",
     "github.com/araddon/qlbridge/expr",
+    "github.com/araddon/qlbridge/expr/builtins",
     "github.com/araddon/qlbridge/vm",
     "github.com/armon/go-metrics",
     "github.com/armon/go-metrics/prometheus",

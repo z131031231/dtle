@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/actiontech/dtle/internal/config/mysql"
+	"math"
 	"testing"
 )
 
@@ -73,6 +74,55 @@ func TestWhereTrue(t *testing.T) {
 			t.Fatalf("r: %v", r)
 		}
 	}
+
+	////////
+	tbCtx = newTableContextWithWhere(t, "db1", "tb1", "a in (2,4,6,8,10,12,14,16) ", "id", "a")
+	{
+		for a := 0; a < 20; a++ {
+			r, err := tbCtx.WhereTrue(buildColumnValues(1,a))
+			if err != nil {
+				t.Fatal(err)
+			}
+			var expect bool
+			switch a {
+			case 2,4,6,8,10,12,14,16:
+				expect = true
+			default:
+				expect = false
+			}
+			if r != expect {
+				t.Fatalf("r: %v", r)
+			}
+		}
+	}
+}
+func TestWhereTrueFunc(t *testing.T) {
+	var tbCtx *TableContext
+
+	////////
+	tbCtx = newTableContextWithWhere(t, "db1", "tb1", "pow(a,4)=16", "id", "a")
+	{
+		r, err := tbCtx.WhereTrue(buildColumnValues(1,2))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if r != true {
+			t.Fatalf("r: %v", r)
+		}
+	}
+
+	////////
+
+	tbCtx = newTableContextWithWhere(t, "db1", "tb1", "unix_timestamp(a) > unix_timestamp('2018-09-07 10:33:25')", "id", "a")
+	{
+		r, err := tbCtx.WhereTrue(buildColumnValues(1,"'2018-09-07 10:33:26'"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		// TODO
+		t.Logf("r: %v", r)
+	}
+
 }
 
 func TestWhereTrueText(t *testing.T) {

@@ -20,6 +20,7 @@ import (
 
 	"strings"
 
+	qlbuiltins "github.com/araddon/qlbridge/expr/builtins"
 	qldatasource "github.com/araddon/qlbridge/datasource"
 	qlexpr "github.com/araddon/qlbridge/expr"
 	qlvm "github.com/araddon/qlbridge/vm"
@@ -36,6 +37,15 @@ const (
 	defaultNumWorkers = 1
 	defaultMsgBytes   = 20 * 1024
 )
+
+func init() {
+	qlexpr.FuncAdd("pow", &qlbuiltins.Pow{})
+	qlexpr.FuncAdd("now", &qlbuiltins.Now{})
+	qlexpr.FuncAdd("sqrt", &qlbuiltins.Sqrt{})
+	qlexpr.FuncAdd("replace", &qlbuiltins.Replace{})
+	qlexpr.FuncAdd("uuid", &qlbuiltins.UuidGenerate{})
+	qlexpr.FuncAdd("char_length", &qlbuiltins.Length{})
+}
 
 // RPCHandler can be provided to the Client if there is a local server
 // to avoid going over the network. If not provided, the Client will
