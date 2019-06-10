@@ -739,6 +739,13 @@ func (e *Extractor) setStatementFor() string {
 }
 
 // Encode
+func GobEncode(v interface{}) ([]byte, error) {
+	b := new(bytes.Buffer)
+	if err := gob.NewEncoder(b).Encode(v); err != nil {
+		return nil, err
+	}
+	return b.Bytes(), nil
+}
 func Encode(v interface{}) ([]byte, error) {
 	b := new(bytes.Buffer)
 	if err := gob.NewEncoder(b).Encode(v); err != nil {
@@ -1294,8 +1301,12 @@ func (e *Extractor) mysqlDump() error {
 					e.onError(TaskStateDead, fmt.Errorf(entry.Err))
 				} else {
 					if e.needToSendTabelDef() {
-						// TODO encode table
-						//entry.Table = d.table
+						tableBs, err := GobEncode(d.table)
+						if err != nil {
+							e.onError(TaskStateDead, fmt.Errorf(entry.Err))
+						} else {
+							entry.Table = tableBs
+						}
 					}
 					if err = e.encodeDumpEntry(entry); err != nil {
 						e.onError(TaskStateRestart, err)
@@ -1482,5 +1493,6 @@ func (e *Extractor) Shutdown() error {
 }
 
 func (e *Extractor) needToSendTabelDef() bool {
+	// TODO if dst_is_kafka && table_changed
 	return true
 }
